@@ -6,6 +6,29 @@ namespace ComprehensiveExam
 {
     public class Program
     {
+        public static void createSalesEmployee(IEmployeeService employeeService)
+        {
+            Console.Write("Enter Employee First Name: ");
+            string firstName = Console.ReadLine();
+
+            Console.Write("Enter Employee Last Name: ");
+            string lastName = Console.ReadLine();
+
+            Console.Write("Enter Employee Number: ");
+            string empNumber = Console.ReadLine();
+
+            Console.Write("Enter Base Salary: ");
+            float baseSalary = float.Parse(Console.ReadLine());
+
+            Console.Write("Enter Commission: ");
+            float commission = float.Parse(Console.ReadLine());
+
+            // int employeeId = selectList.getLastId(itemCount); 
+            SalesEmployee salesEmployee = new SalesEmployee(1, firstName, lastName, empNumber, baseSalary, commission);
+
+            employeeService.Save(salesEmployee);
+        }
+
         public static void Main(string[] args)
         {
             IEmployeeService employeeService = new EmployeeService();
@@ -52,25 +75,7 @@ namespace ComprehensiveExam
                     case "b":
                         Console.WriteLine("\n\n======= Create Sales Employee Record =======\n");
 
-                        Console.Write("Enter Employee First Name: ");
-                        string firstName = Console.ReadLine();
-
-                        Console.Write("Enter Employee Last Name: ");
-                        string lastName = Console.ReadLine();
-
-                        Console.Write("Enter Employee Number: ");
-                        string empNumber = Console.ReadLine();
-
-                        Console.Write("Enter Base Salary: ");
-                        float baseSalary = float.Parse(Console.ReadLine());
-
-                        Console.Write("Enter Commission: ");
-                        float commission = float.Parse(Console.ReadLine());
-
-                        // int employeeId = selectList.getLastId(itemCount); 
-                        SalesEmployee salesEmployee = new SalesEmployee(1, firstName, lastName, empNumber, baseSalary, commission);
-
-                        employeeService.Save(salesEmployee);
+                        createSalesEmployee(employeeService);
 
                         break;
 
@@ -81,7 +86,7 @@ namespace ComprehensiveExam
 
                     case "d":
                         Console.WriteLine("\n\n======= Add Sale to Employee =======\n");
-                        
+
                         break;
 
                     case "quit":
