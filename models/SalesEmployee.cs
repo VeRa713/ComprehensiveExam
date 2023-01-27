@@ -1,4 +1,4 @@
-namespace ComprehensiveExam.models
+namespace ComprehensiveExam.Models
 {
     public class SalesEmployee : Employee
     {
