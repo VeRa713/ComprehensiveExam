@@ -4,5 +4,10 @@ namespace ComprehensiveExam.models
     {
         public string Name { get; set; }
         public float Amount { get; set; }
+
+        public Sale(string name, float amount){
+            this.Name = name;
+            this.Amount = amount;
+        }
     }
 }

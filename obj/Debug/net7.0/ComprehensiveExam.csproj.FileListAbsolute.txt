@@ -1,0 +1,15 @@
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\bin\Debug\net7.0\ComprehensiveExam.exe
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\bin\Debug\net7.0\ComprehensiveExam.deps.json
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\bin\Debug\net7.0\ComprehensiveExam.runtimeconfig.json
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\bin\Debug\net7.0\ComprehensiveExam.dll
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\bin\Debug\net7.0\ComprehensiveExam.pdb
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\obj\Debug\net7.0\ComprehensiveExam.csproj.AssemblyReference.cache
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\obj\Debug\net7.0\ComprehensiveExam.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\obj\Debug\net7.0\ComprehensiveExam.AssemblyInfoInputs.cache
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\obj\Debug\net7.0\ComprehensiveExam.AssemblyInfo.cs
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\obj\Debug\net7.0\ComprehensiveExam.csproj.CoreCompileInputs.cache
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\obj\Debug\net7.0\ComprehensiveExam.dll
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\obj\Debug\net7.0\refint\ComprehensiveExam.dll
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\obj\Debug\net7.0\ComprehensiveExam.pdb
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\obj\Debug\net7.0\ComprehensiveExam.genruntimeconfig.cache
+C:\Users\DANIE9820\Downloads\CSharp Practice\ComprehensiveExam\obj\Debug\net7.0\ref\ComprehensiveExam.dll
