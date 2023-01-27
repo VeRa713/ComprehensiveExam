@@ -28,7 +28,7 @@ namespace ComprehensiveExam
                 Employee employee = new Employee(1, firstName, lastName, empNumber, baseSalary);
 
                 employeeService.Save(employee);
-                Console.WriteLine("Normal Employee Successfully Created!");
+                Console.WriteLine("\nNormal Employee Successfully Created!");
             }
             else if (choice.Equals("Sales"))
             {
@@ -40,7 +40,7 @@ namespace ComprehensiveExam
 
                 employeeService.Save(salesEmployee);
 
-                Console.WriteLine("Sales Employee Successfully Created!");
+                Console.WriteLine("\nSales Employee Successfully Created!");
             }
         }
 
@@ -78,6 +78,19 @@ namespace ComprehensiveExam
                             for (int i = 0; i < employeeList.Count(); i++)
                             {
                                 Console.WriteLine("\nEmployee #" + employeeList[i].EmployeeNumber + " : " + employeeList[i].FirstName);
+
+                                //check if employeeList is Normal or Sales
+                                if (employeeList[i].GetType() == typeof(SalesEmployee))
+                                {
+                                    // Typecasting
+                                    SalesEmployee temp = (SalesEmployee)employeeList[i];
+                                    Console.WriteLine("\nEmployee #" + (i + 1) + " is a Sales Employee");
+                                }
+                                else if (employeeList[i].GetType() == typeof(Employee))
+                                {
+                                    Employee temp = (Employee)employeeList[i];
+                                    Console.WriteLine("\nEmployee #" + (i + 1) + " is a Normal Employee");
+                                }
                             }
                         }
                         else
@@ -113,7 +126,7 @@ namespace ComprehensiveExam
                                     isCorrectChoice = true;
                                     createEmployee(employeeService, choice);
                                     break;
-                                    
+
                                 default:
                                     isCorrectChoice = false;
                                     Console.Write("Invalid Choice. Try Again\n");
