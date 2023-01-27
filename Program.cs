@@ -6,43 +6,6 @@ namespace ComprehensiveExam
 {
     public class Program
     {
-        public static void createEmployee(IEmployeeService employeeService, string choice)
-        {
-            Console.Write("\nEnter Employee First Name: ");
-            string firstName = Console.ReadLine();
-
-            Console.Write("Enter Employee Last Name: ");
-            string lastName = Console.ReadLine();
-
-            Console.Write("Enter Employee Number: ");
-            string empNumber = Console.ReadLine();
-
-            Console.Write("Enter Base Salary: ");
-            float baseSalary = float.Parse(Console.ReadLine());
-
-            // int employeeId = selectList.getLastId(itemCount); 
-
-            if (choice.Equals("normal"))
-            {
-                Employee employee = new Employee(1, firstName, lastName, empNumber, baseSalary);
-
-                employeeService.Save(employee);
-                Console.WriteLine("\nNormal Employee Successfully Created!");
-            }
-            else if (choice.Equals("sales"))
-            {
-                Console.Write("Enter Commission: ");
-                float commission = float.Parse(Console.ReadLine());
-
-                // int employeeId = selectList.getLastId(itemCount); 
-                SalesEmployee salesEmployee = new SalesEmployee(1, firstName, lastName, empNumber, baseSalary, commission);
-
-                employeeService.Save(salesEmployee);
-
-                Console.WriteLine("\nSales Employee Successfully Created!");
-            }
-        }
-
         public static void Main(string[] args)
         {
             IEmployeeService employeeService = new EmployeeService();
@@ -70,9 +33,6 @@ namespace ComprehensiveExam
                     case "a":
                         Console.WriteLine("\n\n======= Display All Employees =======");
 
-                        // display all normal employees first 
-                        //then sales employees
-
                         if (employeeList.Count() > 0)
                         {
                             //loop if user enters invalid choice
@@ -89,36 +49,13 @@ namespace ComprehensiveExam
                                 switch (choice.ToLower())
                                 {
                                     case "a":
-
                                         isValid = true;
-
-                                        for (int i = 0; i < employeeList.Count(); i++)
-                                        {
-                                            //check if employeeList is Normal - display if normal
-                                            if (employeeList[i].GetType() == typeof(Employee))
-                                            {
-                                                Employee temp = (Employee)employeeList[i];
-                                                Console.WriteLine("\nEmployee #" + (i + 1) + " is a Normal Employee");
-                                            }
-                                        }
-
+                                        displayAllNormalEmployees(employeeList);
                                         break;
 
                                     case "b":
-
                                         isValid = true;
-
-                                        for (int i = 0; i < employeeList.Count(); i++)
-                                        {
-                                            //check if employeeList is Normal or Sales - display if sales
-                                            if (employeeList[i].GetType() == typeof(SalesEmployee))
-                                            {
-                                                // Typecasting
-                                                SalesEmployee temp = (SalesEmployee)employeeList[i];
-                                                Console.WriteLine("\nEmployee #" + (i + 1) + " is a Sales Employee");
-                                            }
-                                        }
-
+                                        displayAllSalesEmployees(employeeList);
                                         break;
 
                                     default:
@@ -136,7 +73,7 @@ namespace ComprehensiveExam
                         break;
 
                     case "b":
-                        bool isValidChoice = false;
+                        isValid = false;
 
                         do
                         {
@@ -152,23 +89,23 @@ namespace ComprehensiveExam
                             {
                                 case "a":
                                     choice = "normal";
-                                    isValidChoice = true;
+                                    isValid = true;
                                     createEmployee(employeeService, choice);
                                     break;
 
                                 case "b":
                                     choice = "sales";
-                                    isValidChoice = true;
+                                    isValid = true;
                                     createEmployee(employeeService, choice);
                                     break;
 
                                 default:
-                                    isValidChoice = false;
+                                    isValid = false;
                                     Console.Write("Invalid Choice. Try Again\n");
                                     break;
                             }
 
-                        } while (!isValidChoice);
+                        } while (!isValid);
 
 
 
@@ -214,6 +151,69 @@ namespace ComprehensiveExam
             // Delete an Employee
             // Add a sale to a selected sales employee
 
+        }
+
+        private static void displayAllSalesEmployees(List<Employee> employeeList)
+        {
+            for (int i = 0; i < employeeList.Count(); i++)
+            {
+                //check if employeeList is Normal or Sales - display if sales
+                if (employeeList[i].GetType() == typeof(SalesEmployee))
+                {
+                    // Typecasting
+                    SalesEmployee temp = (SalesEmployee)employeeList[i];
+                    Console.WriteLine("\nEmployee #" + (i + 1) + " is a Sales Employee");
+                }
+            }
+        }
+
+        private static void displayAllNormalEmployees(List<Employee> employeeList)
+        {
+            for (int i = 0; i < employeeList.Count(); i++)
+            {
+                //check if employeeList is Normal - display if normal
+                if (employeeList[i].GetType() == typeof(Employee))
+                {
+                    Employee temp = (Employee)employeeList[i];
+                    Console.WriteLine("\nEmployee #" + (i + 1) + " is a Normal Employee");
+                }
+            }
+        }
+
+        public static void createEmployee(IEmployeeService employeeService, string choice)
+        {
+            Console.Write("\nEnter Employee First Name: ");
+            string firstName = Console.ReadLine();
+
+            Console.Write("Enter Employee Last Name: ");
+            string lastName = Console.ReadLine();
+
+            Console.Write("Enter Employee Number: ");
+            string empNumber = Console.ReadLine();
+
+            Console.Write("Enter Base Salary: ");
+            float baseSalary = float.Parse(Console.ReadLine());
+
+            // int employeeId = selectList.getLastId(itemCount); 
+
+            if (choice.Equals("normal"))
+            {
+                Employee employee = new Employee(1, firstName, lastName, empNumber, baseSalary);
+
+                employeeService.Save(employee);
+                Console.WriteLine("\nNormal Employee Successfully Created!");
+            }
+            else if (choice.Equals("sales"))
+            {
+                Console.Write("Enter Commission: ");
+                float commission = float.Parse(Console.ReadLine());
+
+                SalesEmployee salesEmployee = new SalesEmployee(1, firstName, lastName, empNumber, baseSalary, commission);
+
+                employeeService.Save(salesEmployee);
+
+                Console.WriteLine("\nSales Employee Successfully Created!");
+            }
         }
     }
 }
