@@ -6,9 +6,9 @@ namespace ComprehensiveExam
 {
     public class Program
     {
-        public static void createSalesEmployee(IEmployeeService employeeService)
+        public static void createEmployee(IEmployeeService employeeService, string choice)
         {
-            Console.Write("Enter Employee First Name: ");
+            Console.Write("\nEnter Employee First Name: ");
             string firstName = Console.ReadLine();
 
             Console.Write("Enter Employee Last Name: ");
@@ -20,13 +20,28 @@ namespace ComprehensiveExam
             Console.Write("Enter Base Salary: ");
             float baseSalary = float.Parse(Console.ReadLine());
 
-            Console.Write("Enter Commission: ");
-            float commission = float.Parse(Console.ReadLine());
-
             // int employeeId = selectList.getLastId(itemCount); 
-            SalesEmployee salesEmployee = new SalesEmployee(1, firstName, lastName, empNumber, baseSalary, commission);
 
-            employeeService.Save(salesEmployee);
+
+            if (choice.Equals("Normal"))
+            {
+                Employee employee = new Employee(1, firstName, lastName, empNumber, baseSalary);
+
+                employeeService.Save(employee);
+                Console.WriteLine("Normal Employee Successfully Created!");
+            }
+            else if (choice.Equals("Sales"))
+            {
+                Console.Write("Enter Commission: ");
+                float commission = float.Parse(Console.ReadLine());
+
+                // int employeeId = selectList.getLastId(itemCount); 
+                SalesEmployee salesEmployee = new SalesEmployee(1, firstName, lastName, empNumber, baseSalary, commission);
+
+                employeeService.Save(salesEmployee);
+
+                Console.WriteLine("Sales Employee Successfully Created!");
+            }
         }
 
         public static void Main(string[] args)
@@ -73,9 +88,41 @@ namespace ComprehensiveExam
                         break;
 
                     case "b":
-                        Console.WriteLine("\n\n======= Create Sales Employee Record =======\n");
+                        bool isCorrectChoice = false;
 
-                        createSalesEmployee(employeeService);
+                        do
+                        {
+                            Console.WriteLine("\n\n======= Create Employee Record =======\n");
+
+                            Console.WriteLine("a -  Normal Employee");
+                            Console.WriteLine("b -  Sales Employee");
+
+                            Console.Write("\nWhat type of employee would you like to create?: ");
+                            choice = Console.ReadLine();
+
+                            switch (choice.ToLower())
+                            {
+                                case "a":
+                                    choice = "Normal";
+                                    isCorrectChoice = true;
+                                    createEmployee(employeeService, choice);
+                                    break;
+
+                                case "b":
+                                    choice = "Sales";
+                                    isCorrectChoice = true;
+                                    createEmployee(employeeService, choice);
+                                    break;
+                                    
+                                default:
+                                    isCorrectChoice = false;
+                                    Console.Write("Invalid Choice. Try Again\n");
+                                    break;
+                            }
+
+                        } while (!isCorrectChoice);
+
+
 
                         break;
 
