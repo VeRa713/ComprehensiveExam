@@ -1,32 +1,13 @@
 using ComprehensiveExam.Models;
 
-namespace ComprehensiveExam.interfaces
+namespace ComprehensiveExam.Interfaces
 {
-    public class IEmployeeService
+    public interface IEmployeeService
     {
-        public List<Employee> GetAll()
-        {
-            return null;
-        }
-
-        public List<Employee> GetAllSalesEmployees()
-        {
-            return null;
-        }
-
-        public Employee Save(Employee e)
-        {
-            return null;
-        }
-        public void Delete(Employee e)
-        {
-
-        }
-
-        public void AddSale(SalesEmployee e, Sale s)
-        {
-
-        }
-
+        public List<Employee> GetAll();
+        public List<Employee> GetAllSalesEmployees();
+        public Employee Save(Employee e);
+        public void Delete(Employee e);
+        public void AddSale(SalesEmployee e, Sale s);
     }
 }
