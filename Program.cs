@@ -106,15 +106,13 @@ namespace ComprehensiveExam
 
                         } while (!isValid);
 
-
-
                         break;
 
                     case "c":
                         Console.WriteLine("\n\n======= Delete Employee =======\n");
 
                         Console.Write("Employee ID: ");
-                        int deleteId = Int32.Parse(Console.ReadLine());
+                        int deleteId = int.Parse(Console.ReadLine());
 
                         if (deleteId <= 0 || deleteId > employeeList.Count())
                         {
@@ -124,9 +122,8 @@ namespace ComprehensiveExam
                         {
                             Console.WriteLine("\nDeleting employee with id: " + deleteId + "...");
 
-                            List<Employee> e = employeeService.GetAll();
-                            Employee deleteEmployee = e.Where(item => item.Id == deleteId).FirstOrDefault();
-                            
+                            Employee deleteEmployee = employeeService.GetAll().Where(item => item.Id == deleteId).FirstOrDefault();
+
                             employeeService.Delete(deleteEmployee);
 
                             Console.WriteLine("Delete Successful!");
@@ -136,6 +133,30 @@ namespace ComprehensiveExam
 
                     case "d":
                         Console.WriteLine("\n\n======= Add Sale to Employee =======\n");
+
+                        Console.Write("Sales Employee ID: ");
+                        int saleEmpId = int.Parse(Console.ReadLine());
+
+                        Employee saleEmployee = employeeService.GetAllSalesEmployees().Where(item => item.Id == saleEmpId).FirstOrDefault();
+
+                        if (saleEmployee != null)
+                        {
+                            Console.Write("\nItem Name: ");
+                            string itemName = Console.ReadLine();
+
+                            Console.Write("Amount: ");
+                            float amount = float.Parse(Console.ReadLine());
+
+                            Sale saleItem = new Sale(itemName, amount);
+
+                            employeeService.AddSale((SalesEmployee)saleEmployee, saleItem);
+
+                            Console.WriteLine("\nSale Successfully Added!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nSales employee ID does not exist...");
+                        }
 
                         break;
 
@@ -149,26 +170,6 @@ namespace ComprehensiveExam
                         break;
                 }
             }
-
-
-            // // create salesEmployee
-            // SalesEmployee salesEmployee = new SalesEmployee(1, "fname", "lname", "061307", 1000.00f, 0.1f);
-
-            // //add sales
-            // Sale item1 = new Sale("Item 1", 500.00f);
-            // Sale item2 = new Sale("Item 2", 500.00f);
-
-            // salesEmployee.Sales.Add(item1);
-            // salesEmployee.Sales.Add(item2);
-
-            // // display salary
-            // Console.WriteLine("Salary: " + salesEmployee.GetSalary()); //should output
-
-            // Listing all employees(first all normal employees then sales employees)\
-            // Save an Employee record
-            // Delete an Employee
-            // Add a sale to a selected sales employee
-
         }
 
         private static void displayAllSalesEmployees(List<Employee> saleEmployeeList)

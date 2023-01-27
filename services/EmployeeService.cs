@@ -30,7 +30,7 @@ namespace ComprehensiveExam.services
 
         public void AddSale(SalesEmployee e, Sale s)
         {
-            throw new NotImplementedException();
+            e.Sales.Add(s);
         }
 
         public void Delete(Employee e)
