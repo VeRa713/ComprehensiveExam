@@ -35,7 +35,8 @@ namespace ComprehensiveExam.services
 
         public void Delete(Employee e)
         {
-            throw new NotImplementedException();
+            Employee deleteEmployee = employeeList.Where(list => list.Id == e.Id).FirstOrDefault();
+            employeeList.Remove(deleteEmployee);
         }
 
         public List<Employee> GetAll()
@@ -63,7 +64,7 @@ namespace ComprehensiveExam.services
         public Employee Save(Employee e)
         {
             employeeList.Add(e);
-            
+
             return e;
         }
     }

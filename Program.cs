@@ -113,6 +113,25 @@ namespace ComprehensiveExam
                     case "c":
                         Console.WriteLine("\n\n======= Delete Employee =======\n");
 
+                        Console.Write("Employee ID: ");
+                        int deleteId = Int32.Parse(Console.ReadLine());
+
+                        if (deleteId <= 0 || deleteId > employeeList.Count())
+                        {
+                            Console.WriteLine("\nInvalid id. Try Again.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nDeleting employee with id: " + deleteId + "...");
+
+                            List<Employee> e = employeeService.GetAll();
+                            Employee deleteEmployee = e.Where(item => item.Id == deleteId).FirstOrDefault();
+                            
+                            employeeService.Delete(deleteEmployee);
+
+                            Console.WriteLine("Delete Successful!");
+                        }
+
                         break;
 
                     case "d":
@@ -162,7 +181,8 @@ namespace ComprehensiveExam
                 isFound = true;
             }
 
-            if(!isFound){
+            if (!isFound)
+            {
                 Console.WriteLine("\nList is EMPTY..");
             }
 
@@ -183,7 +203,8 @@ namespace ComprehensiveExam
                 }
             }
 
-             if(!isFound){
+            if (!isFound)
+            {
                 Console.WriteLine("\nList is EMPTY..");
             }
         }
