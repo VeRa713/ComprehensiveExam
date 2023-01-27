@@ -10,5 +10,9 @@ namespace ComprehensiveExam.models
             this.EmployeeNumber = empNumber;
             this.BaseSalary = baseSalary;
         }
+
+        public float GetSalary(){
+            return this.BaseSalary;
+        }
     }
 }
