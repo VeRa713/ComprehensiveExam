@@ -10,5 +10,16 @@ namespace ComprehensiveExam.models
             this.Commission = commission;
             this.Sales = new List<Sale>();
         }
+
+        public float GetSalary(){
+            float totalSales = 0;
+
+            foreach (Sale sale in this.Sales)
+            {
+                totalSales = totalSales + sale.Amount;
+            }
+
+            return this.Commission * totalSales;
+        }
     }
 }
