@@ -22,15 +22,14 @@ namespace ComprehensiveExam
 
             // int employeeId = selectList.getLastId(itemCount); 
 
-
-            if (choice.Equals("Normal"))
+            if (choice.Equals("normal"))
             {
                 Employee employee = new Employee(1, firstName, lastName, empNumber, baseSalary);
 
                 employeeService.Save(employee);
                 Console.WriteLine("\nNormal Employee Successfully Created!");
             }
-            else if (choice.Equals("Sales"))
+            else if (choice.Equals("sales"))
             {
                 Console.Write("Enter Commission: ");
                 float commission = float.Parse(Console.ReadLine());
@@ -64,6 +63,8 @@ namespace ComprehensiveExam
                 Console.Write("\nEnter choice: ");
                 string choice = Console.ReadLine();
 
+                bool isValid = false;
+
                 switch (choice.ToLower())
                 {
                     case "a":
@@ -74,24 +75,58 @@ namespace ComprehensiveExam
 
                         if (employeeList.Count() > 0)
                         {
-
-                            for (int i = 0; i < employeeList.Count(); i++)
+                            //loop if user enters invalid choice
+                            do
                             {
-                                Console.WriteLine("\nEmployee #" + employeeList[i].EmployeeNumber + " : " + employeeList[i].FirstName);
+                                //ask user which type of employee to show
+                                Console.WriteLine("\na - Normal Employees");
+                                Console.WriteLine("b - Sales Employees");
 
-                                //check if employeeList is Normal or Sales
-                                if (employeeList[i].GetType() == typeof(SalesEmployee))
+                                Console.Write("\nWhich type of employee would you like to display: ");
+                                choice = Console.ReadLine();
+
+
+                                switch (choice.ToLower())
                                 {
-                                    // Typecasting
-                                    SalesEmployee temp = (SalesEmployee)employeeList[i];
-                                    Console.WriteLine("\nEmployee #" + (i + 1) + " is a Sales Employee");
+                                    case "a":
+
+                                        isValid = true;
+
+                                        for (int i = 0; i < employeeList.Count(); i++)
+                                        {
+                                            //check if employeeList is Normal - display if normal
+                                            if (employeeList[i].GetType() == typeof(Employee))
+                                            {
+                                                Employee temp = (Employee)employeeList[i];
+                                                Console.WriteLine("\nEmployee #" + (i + 1) + " is a Normal Employee");
+                                            }
+                                        }
+
+                                        break;
+
+                                    case "b":
+
+                                        isValid = true;
+
+                                        for (int i = 0; i < employeeList.Count(); i++)
+                                        {
+                                            //check if employeeList is Normal or Sales - display if sales
+                                            if (employeeList[i].GetType() == typeof(SalesEmployee))
+                                            {
+                                                // Typecasting
+                                                SalesEmployee temp = (SalesEmployee)employeeList[i];
+                                                Console.WriteLine("\nEmployee #" + (i + 1) + " is a Sales Employee");
+                                            }
+                                        }
+
+                                        break;
+
+                                    default:
+                                        isValid = false;
+                                        Console.Write("Invalid Choice. Try Again\n");
+                                        break;
                                 }
-                                else if (employeeList[i].GetType() == typeof(Employee))
-                                {
-                                    Employee temp = (Employee)employeeList[i];
-                                    Console.WriteLine("\nEmployee #" + (i + 1) + " is a Normal Employee");
-                                }
-                            }
+                            } while (!isValid);
                         }
                         else
                         {
@@ -101,7 +136,7 @@ namespace ComprehensiveExam
                         break;
 
                     case "b":
-                        bool isCorrectChoice = false;
+                        bool isValidChoice = false;
 
                         do
                         {
@@ -116,24 +151,24 @@ namespace ComprehensiveExam
                             switch (choice.ToLower())
                             {
                                 case "a":
-                                    choice = "Normal";
-                                    isCorrectChoice = true;
+                                    choice = "normal";
+                                    isValidChoice = true;
                                     createEmployee(employeeService, choice);
                                     break;
 
                                 case "b":
-                                    choice = "Sales";
-                                    isCorrectChoice = true;
+                                    choice = "sales";
+                                    isValidChoice = true;
                                     createEmployee(employeeService, choice);
                                     break;
 
                                 default:
-                                    isCorrectChoice = false;
+                                    isValidChoice = false;
                                     Console.Write("Invalid Choice. Try Again\n");
                                     break;
                             }
 
-                        } while (!isCorrectChoice);
+                        } while (!isValidChoice);
 
 
 
