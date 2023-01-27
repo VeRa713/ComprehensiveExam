@@ -17,31 +17,31 @@ namespace ComprehensiveExam
             while (isContinue)
             {
                 Console.WriteLine("\n\n======= MAIN MENU =======\n");
-                Console.WriteLine("1 -  List All Employees");
-                Console.WriteLine("2 -  Create Employee Record");
-                Console.WriteLine("3 -  Delete Employee");
-                Console.WriteLine("4 -  Add Sale to Employee");
-                Console.WriteLine("5 -  Quit");
+                Console.WriteLine("a -  List All Employees");
+                Console.WriteLine("b -  Create Employee Record");
+                Console.WriteLine("c -  Delete Employee");
+                Console.WriteLine("d -  Add Sale to Employee");
+                Console.WriteLine("\nType \"quit\" to exit program");
 
-                Console.Write("\nEnter Number: ");
+                Console.Write("\nEnter choice: ");
                 string choice = Console.ReadLine();
 
-                switch (choice)
+                switch (choice.ToLower())
                 {
-                    case "1":
+                    case "a":
                         break;
 
-                    case "2":
+                    case "b":
                         break;
                         
-                    case "3":
+                    case "c":
                         break;
 
-                    case "4":
+                    case "d":
                         break;
 
-                    case "5":
-                        Console.Write("Quit");
+                    case "quit":
+                        Console.Write("\nGoodbye!");
                         isContinue = false;
                         break;
 
