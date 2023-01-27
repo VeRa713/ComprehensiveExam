@@ -8,9 +8,9 @@ namespace ComprehensiveExam
     {
         public static void Main(string[] args)
         {
-            // EmployeeService todoItemService = new EmployeeService();
+            IEmployeeService employeeService = new EmployeeService();
 
-            // List<Employee> employeeLists = todoItemService.GetAll();
+            List<Employee> employeeList = employeeService.GetAll();
 
             bool isContinue = true;
 
@@ -29,15 +29,59 @@ namespace ComprehensiveExam
                 switch (choice.ToLower())
                 {
                     case "a":
+                        Console.WriteLine("\n\n======= Display All Employees =======");
+
+                        // display all normal employees first 
+                        //then sales employees
+
+                        if (employeeList.Count() > 0)
+                        {
+
+                            for (int i = 0; i < employeeList.Count(); i++)
+                            {
+                                Console.WriteLine("\nEmployee #" + employeeList[i].EmployeeNumber + " : " + employeeList[i].FirstName);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n\nEmployee List is EMPTY...");
+                        }
+
                         break;
 
                     case "b":
+                        Console.WriteLine("\n\n======= Create Sales Employee Record =======\n");
+
+                        Console.Write("Enter Employee First Name: ");
+                        string firstName = Console.ReadLine();
+
+                        Console.Write("Enter Employee Last Name: ");
+                        string lastName = Console.ReadLine();
+
+                        Console.Write("Enter Employee Number: ");
+                        string empNumber = Console.ReadLine();
+
+                        Console.Write("Enter Base Salary: ");
+                        float baseSalary = float.Parse(Console.ReadLine());
+
+                        Console.Write("Enter Commission: ");
+                        float commission = float.Parse(Console.ReadLine());
+
+                        // int employeeId = selectList.getLastId(itemCount); 
+                        SalesEmployee salesEmployee = new SalesEmployee(1, firstName, lastName, empNumber, baseSalary, commission);
+
+                        employeeService.Save(salesEmployee);
+
                         break;
-                        
+
                     case "c":
+                        Console.WriteLine("\n\n======= Delete Employee =======\n");
+
                         break;
 
                     case "d":
+                        Console.WriteLine("\n\n======= Add Sale to Employee =======\n");
+                        
                         break;
 
                     case "quit":

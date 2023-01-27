@@ -19,7 +19,7 @@ namespace ComprehensiveExam.Models
                 totalSales = totalSales + sale.Amount;
             }
 
-            return this.Commission * totalSales;
+            return BaseSalary + (this.Commission * totalSales);
         }
     }
 }

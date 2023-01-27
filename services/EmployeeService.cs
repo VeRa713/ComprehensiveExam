@@ -6,6 +6,16 @@ namespace ComprehensiveExam.services
 {
     public class EmployeeService : IEmployeeService
     {
+        private ApplicationContext appInstance;
+
+        private List<Employee> employeeList;
+
+        public EmployeeService()
+        {
+            appInstance = ApplicationContext.Instance;
+            employeeList = appInstance.GetAll();
+        }
+
         public void AddSale(SalesEmployee e, Sale s)
         {
             throw new NotImplementedException();
@@ -18,7 +28,7 @@ namespace ComprehensiveExam.services
 
         public List<Employee> GetAll()
         {
-            throw new NotImplementedException();
+            return this.employeeList;
         }
 
         public List<Employee> GetAllSalesEmployees()
@@ -28,7 +38,9 @@ namespace ComprehensiveExam.services
 
         public Employee Save(Employee e)
         {
-            throw new NotImplementedException();
+            employeeList.Add(e);
+            
+            return e;
         }
     }
 }
