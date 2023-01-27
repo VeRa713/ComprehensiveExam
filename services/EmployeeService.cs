@@ -33,7 +33,20 @@ namespace ComprehensiveExam.services
 
         public List<Employee> GetAllSalesEmployees()
         {
-            throw new NotImplementedException();
+            List<Employee> salesEmployeesList = new List<Employee>();
+
+            for (int i = 0; i < employeeList.Count(); i++)
+            {
+                //check if employeeList is Normal or Sales - add to salesEmployeesList
+                if (employeeList[i].GetType() == typeof(SalesEmployee))
+                {
+                    // Typecasting
+                    SalesEmployee temp = (SalesEmployee)employeeList[i];
+                    salesEmployeesList.Add(temp);
+                }
+            }
+
+            return salesEmployeesList;
         }
 
         public Employee Save(Employee e)

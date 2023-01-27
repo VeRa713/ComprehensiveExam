@@ -45,7 +45,6 @@ namespace ComprehensiveExam
                                 Console.Write("\nWhich type of employee would you like to display: ");
                                 choice = Console.ReadLine();
 
-
                                 switch (choice.ToLower())
                                 {
                                     case "a":
@@ -55,7 +54,7 @@ namespace ComprehensiveExam
 
                                     case "b":
                                         isValid = true;
-                                        displayAllSalesEmployees(employeeList);
+                                        displayAllSalesEmployees(employeeService.GetAllSalesEmployees());
                                         break;
 
                                     default:
@@ -153,17 +152,11 @@ namespace ComprehensiveExam
 
         }
 
-        private static void displayAllSalesEmployees(List<Employee> employeeList)
+        private static void displayAllSalesEmployees(List<Employee> saleEmployeeList)
         {
-            for (int i = 0; i < employeeList.Count(); i++)
+            for (int i = 0; i < saleEmployeeList.Count(); i++)
             {
-                //check if employeeList is Normal or Sales - display if sales
-                if (employeeList[i].GetType() == typeof(SalesEmployee))
-                {
-                    // Typecasting
-                    SalesEmployee temp = (SalesEmployee)employeeList[i];
-                    Console.WriteLine("\nEmployee #" + (i + 1) + " is a Sales Employee");
-                }
+                Console.WriteLine("\nEmployee " + saleEmployeeList[i].FirstName + " is a Sales Employee");
             }
         }
 
