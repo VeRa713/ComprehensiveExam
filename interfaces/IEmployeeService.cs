@@ -9,5 +9,6 @@ namespace ComprehensiveExam.Interfaces
         public Employee Save(Employee e);
         public void Delete(Employee e);
         public void AddSale(SalesEmployee e, Sale s);
+        int getNextId(int count);
     }
 }

@@ -89,13 +89,13 @@ namespace ComprehensiveExam
                                 case "a":
                                     choice = "normal";
                                     isValid = true;
-                                    createEmployee(employeeService, choice);
+                                    createEmployee(employeeService, choice, employeeList);
                                     break;
 
                                 case "b":
                                     choice = "sales";
                                     isValid = true;
-                                    createEmployee(employeeService, choice);
+                                    createEmployee(employeeService, choice, employeeList);
                                     break;
 
                                 default:
@@ -154,26 +154,41 @@ namespace ComprehensiveExam
 
         private static void displayAllSalesEmployees(List<Employee> saleEmployeeList)
         {
+            bool isFound = false;
+
             for (int i = 0; i < saleEmployeeList.Count(); i++)
             {
-                Console.WriteLine("\nEmployee " + saleEmployeeList[i].FirstName + " is a Sales Employee");
+                Console.WriteLine("\nEmployee #" + saleEmployeeList[i].Id + " is a Sales Employee");
+                isFound = true;
             }
+
+            if(!isFound){
+                Console.WriteLine("\nList is EMPTY..");
+            }
+
         }
 
         private static void displayAllNormalEmployees(List<Employee> employeeList)
         {
+            bool isFound = false;
+
             for (int i = 0; i < employeeList.Count(); i++)
             {
                 //check if employeeList is Normal - display if normal
                 if (employeeList[i].GetType() == typeof(Employee))
                 {
                     Employee temp = (Employee)employeeList[i];
-                    Console.WriteLine("\nEmployee #" + (i + 1) + " is a Normal Employee");
+                    Console.WriteLine("\nEmployee #" + temp.Id + " is a Normal Employee");
+                    isFound = true;
                 }
+            }
+
+             if(!isFound){
+                Console.WriteLine("\nList is EMPTY..");
             }
         }
 
-        public static void createEmployee(IEmployeeService employeeService, string choice)
+        public static void createEmployee(IEmployeeService employeeService, string choice, List<Employee> employeeList)
         {
             Console.Write("\nEnter Employee First Name: ");
             string firstName = Console.ReadLine();
@@ -187,11 +202,11 @@ namespace ComprehensiveExam
             Console.Write("Enter Base Salary: ");
             float baseSalary = float.Parse(Console.ReadLine());
 
-            // int employeeId = selectList.getLastId(itemCount); 
+            int employeeId = employeeService.getNextId(employeeList.Count());
 
             if (choice.Equals("normal"))
             {
-                Employee employee = new Employee(1, firstName, lastName, empNumber, baseSalary);
+                Employee employee = new Employee(employeeId, firstName, lastName, empNumber, baseSalary);
 
                 employeeService.Save(employee);
                 Console.WriteLine("\nNormal Employee Successfully Created!");
@@ -201,7 +216,7 @@ namespace ComprehensiveExam
                 Console.Write("Enter Commission: ");
                 float commission = float.Parse(Console.ReadLine());
 
-                SalesEmployee salesEmployee = new SalesEmployee(1, firstName, lastName, empNumber, baseSalary, commission);
+                SalesEmployee salesEmployee = new SalesEmployee(employeeId, firstName, lastName, empNumber, baseSalary, commission);
 
                 employeeService.Save(salesEmployee);
 

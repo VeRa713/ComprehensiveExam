@@ -16,6 +16,18 @@ namespace ComprehensiveExam.services
             employeeList = appInstance.GetAll();
         }
 
+        public int getNextId(int itemCount)
+        {
+            if (itemCount > 0)
+            {
+                return this.employeeList.Last().Id + 1;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
         public void AddSale(SalesEmployee e, Sale s)
         {
             throw new NotImplementedException();
@@ -40,7 +52,6 @@ namespace ComprehensiveExam.services
                 //check if employeeList is Normal or Sales - add to salesEmployeesList
                 if (employeeList[i].GetType() == typeof(SalesEmployee))
                 {
-                    // Typecasting
                     SalesEmployee temp = (SalesEmployee)employeeList[i];
                     salesEmployeesList.Add(temp);
                 }
