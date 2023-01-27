@@ -1,6 +1,6 @@
 using ComprehensiveExam.Models;
 
-namespace ComprehensiveExam.conf
+namespace ComprehensiveExam.Conf
 {
     public class ApplicationContext
     {
