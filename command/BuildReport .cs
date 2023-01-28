@@ -33,7 +33,7 @@ namespace ComprehensiveExam.command
         */
 
         private EmployeeService employeeService;
-        private List<Employee> allEmployees;   
+        private List<Employee> allEmployees;
         private List<Employee> normalEmployees;
         private List<SalesEmployee> salesEmployees;
 
@@ -61,7 +61,8 @@ namespace ComprehensiveExam.command
                 {
                     SalesEmployee temp = (SalesEmployee)this.allEmployees[i];
                     salesEmployees.Add(temp);
-                } else if (this.allEmployees[i].GetType() == typeof(Employee))
+                }
+                else if (this.allEmployees[i].GetType() == typeof(Employee))
                 {
                     Employee temp = (Employee)this.allEmployees[i];
                     this.normalEmployees.Add(temp);
@@ -71,14 +72,33 @@ namespace ComprehensiveExam.command
             List<Object> normalEmployee = this.normalEmployees.Select(ne => new { ne.Id, ne.EmployeeNumber, ne.FirstName, ne.LastName, ne.BaseSalary }).ToList<Object>();
             List<Object> salesEmployee = this.salesEmployees.Select(se => new { se.Id, se.EmployeeNumber, se.FirstName, se.LastName, se.BaseSalary, se.Commission }).ToList<Object>();
 
+            float overallSales = 0.00f;
+            float overallCommission = 0.00f; 
+
+            foreach(var sEmployee in this.salesEmployees) //loops through each sale employee
+            {
+                float totalSalePerEmployee = 0.00f;
+
+                foreach(var sale in sEmployee.Sales)      //loops through each sale of a sale employee
+                {         
+                    totalSalePerEmployee = totalSalePerEmployee + sale.Amount; //computes for the total sale of an employee
+                }
+
+                overallSales = overallSales + totalSalePerEmployee;  //adds the sales of the employee to the overall totalSales
+                
+                float employeeCommission = totalSalePerEmployee * (sEmployee.Commission) ; //computes for the employee's commission
+
+                overallCommission = overallCommission + employeeCommission;  //adds the commission of the employee to the overall commission
+            }
+
             Dictionary<string, object> jsonReport = new Dictionary<string, object>();
             jsonReport.Add("employees", normalEmployee);
             jsonReport.Add("salesEmployees", salesEmployee);
 
             if (this.salesEmployees.Count > 0)
             {
-                jsonReport.Add("totalSales", 0);
-                jsonReport.Add("totalCommission", 0);
+                jsonReport.Add("totalSales", overallSales);
+                jsonReport.Add("totalCommission", overallCommission);
             }
 
             return JsonSerializer.Serialize(jsonReport, seralizerOptions);
