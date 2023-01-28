@@ -23,7 +23,7 @@ namespace ComprehensiveExam.Conf
             this.allList = new List<Employee>();
         }
 
-        public List<Employee> GetAll() //change to getALl
+        public List<Employee> GetAll() 
         {
             return this.allList;
         }

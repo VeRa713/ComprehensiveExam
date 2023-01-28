@@ -1,6 +1,7 @@
 ﻿using ComprehensiveExam.Interfaces;
 using ComprehensiveExam.Models;
 using ComprehensiveExam.services;
+using ComprehensiveExam.command;
 
 namespace ComprehensiveExam
 {
@@ -12,6 +13,8 @@ namespace ComprehensiveExam
 
             List<Employee> employeeList = employeeService.GetAll();
 
+            BuildReport cmdBuildReport = new BuildReport();
+
             bool isContinue = true;
 
             while (isContinue)
@@ -21,6 +24,7 @@ namespace ComprehensiveExam
                 Console.WriteLine("b -  Create Employee Record");
                 Console.WriteLine("c -  Delete Employee");
                 Console.WriteLine("d -  Add Sale to Employee");
+                Console.WriteLine("e -  Generate Report");
                 Console.WriteLine("\nType \"quit\" to exit program");
 
                 Console.Write("\nEnter choice: ");
@@ -159,6 +163,12 @@ namespace ComprehensiveExam
                         }
 
                         break;
+
+                    case "e":
+                        Console.WriteLine("\n\n======= Generate Report =======\n");
+                        Console.WriteLine(cmdBuildReport.Execute());
+                        cmdBuildReport.CleanReportData();
+                        break;    
 
                     case "quit":
                         Console.Write("\nGoodbye!");
