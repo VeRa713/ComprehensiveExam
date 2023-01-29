@@ -145,10 +145,10 @@ namespace ComprehensiveExam
                     case "d":
                         Console.WriteLine("\n\n======= Add Sale to Employee =======\n");
 
-                        Console.Write("Sales Employee ID: ");
-                        int saleEmpId = int.Parse(Console.ReadLine());
+                        Console.Write("Sales Employee Number: ");
+                        string saleEmpNum = Console.ReadLine();
 
-                        Employee saleEmployee = employeeService.GetAllSalesEmployees().Where(item => item.Id == saleEmpId).FirstOrDefault();
+                        Employee saleEmployee = employeeService.GetAllSalesEmployees().Where(item => item.EmployeeNumber == saleEmpNum).FirstOrDefault();
 
                         if (saleEmployee != null)
                         {
