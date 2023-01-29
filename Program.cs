@@ -115,22 +115,29 @@ namespace ComprehensiveExam
                     case "c":
                         Console.WriteLine("\n\n======= Delete Employee =======\n");
 
-                        Console.Write("Employee ID: ");
-                        int deleteId = int.Parse(Console.ReadLine());
+                        Console.Write("Employee Number: ");
+                        string empNum = Console.ReadLine();
 
-                        if (deleteId <= 0 || deleteId > employeeList.Count())
+                        if (employeeList != null)
                         {
-                            Console.WriteLine("\nInvalid id. Try Again.");
+                            Console.WriteLine("\nDeleting employee with employee number: " + empNum);
+
+                            Employee deleteEmployee = employeeService.GetAll().Where(item => item.EmployeeNumber == empNum).FirstOrDefault();
+
+                            if (deleteEmployee != null)
+                            {
+                                employeeService.Delete(deleteEmployee);
+
+                                Console.WriteLine("\nDelete Successful!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nEmployee does not exist");
+                            }
                         }
                         else
                         {
-                            Console.WriteLine("\nDeleting employee with id: " + deleteId + "...");
-
-                            Employee deleteEmployee = employeeService.GetAll().Where(item => item.Id == deleteId).FirstOrDefault();
-
-                            employeeService.Delete(deleteEmployee);
-
-                            Console.WriteLine("Delete Successful!");
+                            Console.WriteLine("\nInvalid id. Try Again.");
                         }
 
                         break;
@@ -168,7 +175,7 @@ namespace ComprehensiveExam
                         Console.WriteLine("\n\n======= Generate Report =======\n");
                         Console.WriteLine(cmdBuildReport.Execute());
                         cmdBuildReport.CleanReportData();
-                        break;    
+                        break;
 
                     case "quit":
                         Console.Write("\nGoodbye!");
