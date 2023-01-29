@@ -53,11 +53,13 @@ namespace ComprehensiveExam
                                 {
                                     case "a":
                                         isValid = true;
+                                        Console.WriteLine("\n\n======= All Normal Employees =======");
                                         displayAllNormalEmployees(employeeList);
                                         break;
 
                                     case "b":
                                         isValid = true;
+                                        Console.WriteLine("\n\n======= All Sales Employees =======");
                                         displayAllSalesEmployees(employeeService.GetAllSalesEmployees());
                                         break;
 
@@ -195,7 +197,7 @@ namespace ComprehensiveExam
 
             for (int i = 0; i < saleEmployeeList.Count(); i++)
             {
-                Console.WriteLine("\nEmployee #" + saleEmployeeList[i].Id + " is a Sales Employee");
+                Console.WriteLine("\nEmployee #" + saleEmployeeList[i].EmployeeNumber  + " : " + saleEmployeeList[i].LastName + ", " + saleEmployeeList[i].FirstName);
                 isFound = true;
             }
 
@@ -216,7 +218,7 @@ namespace ComprehensiveExam
                 if (employeeList[i].GetType() == typeof(Employee))
                 {
                     Employee temp = (Employee)employeeList[i];
-                    Console.WriteLine("\nEmployee #" + temp.Id + " is a Normal Employee");
+                    Console.WriteLine("\nEmployee #" + temp.EmployeeNumber + " : " + temp.LastName + ", " + temp.FirstName);
                     isFound = true;
                 }
             }
